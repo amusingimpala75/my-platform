@@ -19,7 +19,7 @@ The frontend, backend, database, deployment environments, and other production c
 
 Development is performed from WSL/Linux.
 
-Changes are developed on focused branches and merged into protected `main` through pull requests.
+Changes are developed on focused branches and merged into protected `trunk` through pull requests.
 
 ## Engineering Conventions
 
