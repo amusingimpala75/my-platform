@@ -26,3 +26,31 @@ Changes are developed on focused branches and merged into protected `trunk` thro
 Project conventions are documented in:
 
 `docs/style-guide.md`
+
+## Deployment
+
+The frontend is deployed with Cloudflare Pages from the GitHub repository.
+
+Live URLs:
+
+* Production: `https://comp451.amusingimpala.com`
+
+* Cloudflare Pages: `https://my-platform-36w.pages.dev`
+
+Cloudflare Pages configuration:
+
+* Production branch: `trunk`
+
+* Root directory: `frontend`
+
+* Build command: `npm run build`
+
+* Build output directory: `dist`
+
+Current status:
+
+* Frontend deployment is active.
+
+* Backend deployment is not yet configured.
+
+* Production database integration is not yet configured.
