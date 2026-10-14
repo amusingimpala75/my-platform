@@ -475,7 +475,7 @@ Before considering the assignment complete, verify:
 - [x] Custom production domain is working
 - [x] A pull request produced a usable preview deployment
 - [x] Preview deployment was checked before merging
-- [ ] Personal introduction was developed on its own feature branch
-- [ ] Personal introduction PR was reviewed through its preview deployment
-- [ ] The merged change appeared in production
-- [ ] You understand the React/TypeScript code you submitted
+- [x] Personal introduction was developed on its own feature branch
+- [x] Personal introduction PR was reviewed through its preview deployment
+- [x] The merged change appeared in production
+- [x] You understand the React/TypeScript code you submitted
