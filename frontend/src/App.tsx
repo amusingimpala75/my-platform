@@ -7,6 +7,14 @@ type Project = {
   link: string
 }
 
+type ReportKind = "bug" | "feature";
+
+type Report = {
+  id: string;
+  text: string;
+  kind: ReportKind;
+}
+
 // Replace these placeholders with your own details before publishing.
 const projects: Project[] = [
   {
@@ -23,6 +31,17 @@ function ArrowUpRight() {
 }
 
 function App() {
+  const sampleBugReport: Report = {
+    id: '1',
+    text: 'Navigation link is broken',
+    kind: 'bug',
+  };
+  const sampleFeatureRequest: Report = {
+    id: '2',
+    text: 'Light/dark modes',
+    kind: 'feature',
+  };
+
   return (
     <main>
       <nav className="site-nav" aria-label="Primary navigation">
@@ -116,6 +135,15 @@ function App() {
           </p>
 
         </div>
+      </section>
+
+      <section className="report-board">
+        <h2>Bugs & Feature Requests</h2>
+        {[sampleBugReport, sampleFeatureRequest].map(report => (
+          <p key={report.id}>
+            {report.text} ({report.kind})
+          </p>
+        ))}
       </section>
 
       <footer>
