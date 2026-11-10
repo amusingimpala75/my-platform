@@ -18,7 +18,9 @@
         {
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
+              biome
               nodejs
+              typescript-language-server
             ];
           };
         };
