@@ -31,16 +31,18 @@ function ArrowUpRight() {
 }
 
 function App() {
-  const sampleBugReport: Report = {
-    id: '1',
-    text: 'Navigation link is broken',
-    kind: 'bug',
-  };
-  const sampleFeatureRequest: Report = {
-    id: '2',
-    text: 'Light/dark modes',
-    kind: 'feature',
-  };
+  const reports: Report[] = [
+    {
+      id: '1',
+      text: 'Navigation link is broken',
+      kind: 'bug',
+    },
+    {
+      id: '2',
+      text: 'Light/dark modes',
+      kind: 'feature',
+    },
+  ];
 
   return (
     <main>
@@ -139,10 +141,10 @@ function App() {
 
       <section className="report-board">
         <h2>Bugs & Feature Requests</h2>
-        {[sampleBugReport, sampleFeatureRequest].map(report => (
-          <p key={report.id}>
+        {reports.map(report => (
+          <li key={report.id}>
             {report.text} ({report.kind})
-          </p>
+          </li>
         ))}
       </section>
 
