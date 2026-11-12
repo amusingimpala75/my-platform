@@ -1,5 +1,7 @@
 import './App.css'
 
+import { useState } from 'react'
+
 type Project = {
   title: string
   description: string
@@ -8,11 +10,13 @@ type Project = {
 }
 
 type ReportKind = "bug" | "feature";
+type Priority = 'new' | 'urgent' | 'high' | 'medium' | 'low';
 
 type Report = {
   id: string;
   text: string;
   kind: ReportKind;
+  priority: Priority;
 }
 
 // Replace these placeholders with your own details before publishing.
@@ -31,18 +35,29 @@ function ArrowUpRight() {
 }
 
 function App() {
-  const reports: Report[] = [
-    {
-      id: '1',
-      text: 'Navigation link is broken',
-      kind: 'bug',
-    },
-    {
-      id: '2',
-      text: 'Light/dark modes',
-      kind: 'feature',
-    },
-  ];
+  const [reports, setReports] = useState<Report[]>([]);
+  const [newReportText, setNewReportText] = useState('');
+  const [newReportKind, setNewReportKind] = useState<ReportKind>('bug');
+  const [newReportPriority, setNewReportPriority] = useState<Priority>('low');
+
+  function addReport() {
+    const text = newReportText.trim();
+    if (text.length === 0) {
+      return;
+    }
+
+    const newReport: Report = {
+      id: crypto.randomUUID(),
+      text: text,
+      kind: newReportKind,
+      priority: newReportPriority,
+    };
+
+    setReports([...reports, newReport]);
+    setNewReportText('');
+    setNewReportKind('bug');
+    setNewReportPriority('low');
+  }
 
   return (
     <main>
@@ -141,11 +156,46 @@ function App() {
 
       <section className="report-board">
         <h2>Bugs & Feature Requests</h2>
-        {reports.map(report => (
-          <li key={report.id}>
-            {report.text} ({report.kind})
-          </li>
-        ))}
+        <input
+          type="text"
+          value={newReportText}
+          onChange={(event) => setNewReportText(event.target.value)}
+          placeholder="Describe a bug..."
+          aria-label="New bug report"
+        />
+
+        <select
+          name='kind'
+          value={newReportKind}
+          onChange={e => setNewReportKind(e.target.value as ReportKind)}
+        >
+          <option value='feature'>Feature</option>
+          <option value='bug'>Bug</option>
+        </select>
+
+        <select
+          name='priority'
+          value={newReportPriority}
+          onChange={e => setNewReportPriority(e.target.value as Priority)}
+        >
+          <option value='new'>New</option>
+          <option value='urgent'>Urgent</option>
+          <option value='high'>High</option>
+          <option value='medium'>Medium</option>
+          <option value='low'>Low</option>
+        </select>
+
+        <button type="button" onClick={addReport}>
+          Add {newReportKind[0].toUpperCase() + newReportKind.slice(1)}
+        </button>
+
+        <ul>
+          {reports.map(report => (
+            <li key={report.id}>
+              {report.text} ({report.kind}, {report.priority})
+            </li>
+          ))}
+        </ul>
       </section>
 
       <footer>
